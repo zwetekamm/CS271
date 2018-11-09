@@ -85,7 +85,7 @@ input:
 	je          isOne
 	cmp         eax, 2
 	je          isTwo
-	jmp         sequence		; if valid
+	jmp         sequence            ; if valid
 
 ifInvalid:
 	; If input is invalid
@@ -93,7 +93,7 @@ ifInvalid:
 	call        WriteString
 	call        CrLf
 	call        CrLf
-	jmp         input							; return to GET USER DATA
+	jmp         input               ; return to GET USER DATA
 
 isOne:
 	call        WriteDec
@@ -109,57 +109,57 @@ isTwo:
 	call        WriteDec
 	call        CrLf
 	call        CrLf
-	jmp	        goodbye
+	jmp         goodbye
 
 ; DISPLAY FIBS
 sequence:
 	mov         ecx, fibNum
-	sub         ecx, 3									; since 1 and 2 are preconditions, begin at 3
-	mov	        eax, 1
-	call        WriteDec								; first sequence
-	mov	        edx, OFFSET		spaceBuffer
+	sub         ecx, 3                  ; since 1 and 2 are preconditions, begin at 3
+	mov         eax, 1
+	call        WriteDec                ; first sequence
+	mov         edx, OFFSET		spaceBuffer
 	call        WriteString
-	call        WriteDec								; second sequence
+	call        WriteDec                ; second sequence
 	call        WriteString
-	mov	        val1, eax
-	mov	        eax, 2									; third sequence
+	mov         val1, eax
+	mov         eax, 2                  ; third sequence
 	call        WriteDec
-	mov	        edx, OFFSET		spaceBuffer
+	mov         edx, OFFSET		spaceBuffer
 	call        WriteString
-	mov	        val2, eax								; store previous value as new variable
+	mov         val2, eax               ; store previous value as new variable
 
 fibLoop:
 
-	add	        eax, val1								; add previous values
+	add         eax, val1               ; add previous values
 	call        WriteDec
-	mov	        edx, OFFSET		spaceBuffer
+	mov         edx, OFFSET		spaceBuffer
 	call        WriteString
-	mov	        temp, eax								; begin swap of previous values
-	mov	        eax, val2								; -
-	mov	        val1, eax								; -
-	mov	        eax, temp								; -
-	mov	        val2, eax								; end of swap
-	mov	        edx, ecx
+	mov         temp, eax               ; begin swap of previous values
+	mov         eax, val2               ; -
+	mov         val1, eax               ; -
+	mov         eax, temp               ; -
+	mov         val2, eax               ; end of swap
+	mov         edx, ecx
 	cdq
-	div	        ifNewline
-	cmp	        edx, 0									; compare, if the 5th sequence per line
-	jne	        newLine
+	div         ifNewline
+	cmp         edx, 0                  ; compare, if the 5th sequence per line
+	jne         newLine
 	call        CrLf
 
 newLine:
-	mov	        eax, temp
+	mov         eax, temp
 	loop        fibLoop
 	call        CrLf
-	jmp	        goodbye
+	jmp         goodbye
 
 ; FAREWELL
 goodbye:
-	mov	        edx, OFFSET		prompt_Confirm
+	mov         edx, OFFSET		prompt_Confirm
 	call        WriteString
 	call        CrLf
-	mov	        edx, OFFSET		prompt_Goodbye
+	mov         edx, OFFSET		prompt_Goodbye
 	call        WriteString
-	mov	        edx, OFFSET		nameBuffer
+	mov         edx, OFFSET		nameBuffer
 	call        WriteString
 	call        CrLf
 
